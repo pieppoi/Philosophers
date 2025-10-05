@@ -12,6 +12,23 @@
 
 #include "philo.h"
 
+static void	stagger_start(t_philo *philo)
+{
+    int	is_odd_count;
+
+    is_odd_count = (philo->data->num_philos % 2) != 0;
+    if (is_odd_count)
+    {
+        if ((philo->id % 2) == 0)
+            precise_usleep(philo->data->time_to_eat * 1000);
+    }
+    else
+    {
+        if ((philo->id % 2) == 0)
+            precise_usleep((philo->data->time_to_eat * 1000) / 2);
+    }
+}
+
 static int	check_philosopher_status(t_philo *philo)
 {
 	int	status;
@@ -44,6 +61,8 @@ static void	philosopher_cycle(t_philo *philo)
 			break ;
 		philo->state = THINKING;
 		print_status(philo, "is thinking");
+        if ((philo->data->num_philos % 2) != 0)
+            precise_usleep(philo->data->time_to_eat * 1000);
 	}
 }
 
@@ -56,6 +75,7 @@ void	*philosopher_routine(void *arg)
 	pthread_mutex_lock(&philo->data->meal_mutex);
 	philo->last_meal_time = philo->data->start_time;
 	pthread_mutex_unlock(&philo->data->meal_mutex);
+    stagger_start(philo);
 	if (philo->data->num_philos == 1)
 	{
 		handle_single_philosopher(philo);
