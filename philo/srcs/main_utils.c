@@ -59,3 +59,22 @@ int	create_philosopher_threads(t_data *data)
 	}
 	return (0);
 }
+
+void	start_simulation(t_data *data)
+{
+    int i;
+
+    pthread_mutex_lock(&data->start_mutex);
+    pthread_mutex_lock(&data->meal_mutex);
+    data->start_time = get_time();
+    i = 0;
+    while (i < data->num_philos)
+    {
+        data->philos[i].last_meal_time = data->start_time;
+        i++;
+    }
+    pthread_mutex_unlock(&data->meal_mutex);
+    data->started = 1;
+    pthread_cond_broadcast(&data->start_cond);
+    pthread_mutex_unlock(&data->start_mutex);
+}

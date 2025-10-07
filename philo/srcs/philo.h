@@ -56,7 +56,10 @@ typedef struct s_data
 	int				all_fed;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
-	pthread_mutex_t	meal_mutex;
+    pthread_mutex_t	meal_mutex;
+    pthread_mutex_t	start_mutex;
+    pthread_cond_t	start_cond;
+    int				started;
 	t_philo			*philos;
 }	t_data;
 
@@ -71,6 +74,7 @@ void	cleanup(t_data *data);
 // Main utility functions
 int		validate_and_init(t_data *data, int argc, char **argv);
 int		create_philosopher_threads(t_data *data);
+void	start_simulation(t_data *data);
 
 // Monitor functions
 void	monitor_philosophers(t_data *data);

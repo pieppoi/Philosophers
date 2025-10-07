@@ -19,6 +19,7 @@ int	init_data(t_data *data)
 	data->start_time = 0;
 	data->philos = NULL;
 	data->forks = NULL;
+    data->started = 0;
 	data->philos = malloc(sizeof(t_philo) * data->num_philos);
 	if (!data->philos)
 		return (0);
@@ -74,7 +75,9 @@ void	cleanup(t_data *data)
 		free(data->forks);
 		data->forks = NULL;
 	}
-	pthread_mutex_destroy(&data->print_mutex);
-	pthread_mutex_destroy(&data->meal_mutex);
+    pthread_mutex_destroy(&data->print_mutex);
+    pthread_mutex_destroy(&data->meal_mutex);
+    pthread_cond_destroy(&data->start_cond);
+    pthread_mutex_destroy(&data->start_mutex);
 }
 
