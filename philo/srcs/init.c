@@ -6,7 +6,7 @@
 /*   By: mkazuhik <mkazuhik@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 04:36:32 by mkazuhik          #+#    #+#             */
-/*   Updated: 2025/10/01 04:49:19 by mkazuhik         ###   ########.fr       */
+/*   Updated: 2025/10/07 16:31:59 by mkazuhik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,7 @@ void	cleanup(t_data *data)
 	}
 	pthread_mutex_destroy(&data->print_mutex);
 	pthread_mutex_destroy(&data->meal_mutex);
+	// pthread_cond_destroy(&data->start_cond);
+	// pthread_mutex_destroy(&data->start_mutex);
 }
 

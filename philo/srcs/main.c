@@ -6,7 +6,7 @@
 /*   By: mkazuhik <mkazuhik@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 03:31:34 by mkazuhik          #+#    #+#             */
-/*   Updated: 2025/10/01 04:29:24 by mkazuhik         ###   ########.fr       */
+/*   Updated: 2025/10/07 16:32:25 by mkazuhik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 	data.start_time = get_time();
 	if (create_philosopher_threads(&data) != 0)
 		return (1);
+	// start_simuration(&data);
 	monitor_philosophers(&data);
 	wait_for_threads(&data);
 	cleanup(&data);
