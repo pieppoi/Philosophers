@@ -1,0 +1,3 @@
+m_extension/libcoregrind_amd64_linux_a-extension-s390x.o: \
+ m_extension/extension-s390x.c /usr/include/stdc-predef.h
+/usr/include/stdc-predef.h:
