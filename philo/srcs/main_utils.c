@@ -43,6 +43,10 @@ int	create_philosopher_threads(t_data *data)
 	i = 0;
 	while (i < data->num_philos)
 	{
+        // 初期の空腹タイムスタンプを起動時刻で揃える（監視スレッドより先に設定）
+        pthread_mutex_lock(&data->meal_mutex);
+        data->philos[i].last_meal_time = data->start_time;
+        pthread_mutex_unlock(&data->meal_mutex);
 		if (pthread_create(&data->philos[i].thread, NULL, philosopher_routine,
 				&data->philos[i]) != 0)
 		{
