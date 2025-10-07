@@ -6,7 +6,7 @@
 /*   By: mkazuhik <mkazuhik@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 04:24:46 by mkazuhik          #+#    #+#             */
-/*   Updated: 2025/10/07 16:32:18 by mkazuhik         ###   ########.fr       */
+/*   Updated: 2025/10/07 16:43:46 by mkazuhik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,3 @@ int	create_philosopher_threads(t_data *data)
 	}
 	return (0);
 }
-
-// void	start_simuration(t_data *data)
-// {
-// 	int	i;
-
-// 	pthread_mutex_lock(&data->start_mutex);
-// 	pthread_mutex_lock(&data->meal_mutex);
-// 	i = 0;
-// 	while (i < data->num_philos)
-// 	{
-// 		data->philos[i].last_meal_time = data->start_time;
-// 		i++;
-// 	}
-// 	pthread_mutex_unlock(&data->meal_mutex);
-// 	data->started = 1;
-// 	pthread_cond_broadcast(&data->start_cond);
-// 	pthread_mutex_unlock(&data->start_mutex);
-// }
