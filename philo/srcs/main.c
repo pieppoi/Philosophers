@@ -18,9 +18,9 @@ int	main(int argc, char **argv)
 
 	if (validate_and_init(&data, argc, argv) != 0)
 		return (1);
-	data.start_time = get_time();
 	if (create_philosopher_threads(&data) != 0)
 		return (1);
+    start_simulation(&data);
 	monitor_philosophers(&data);
 	wait_for_threads(&data);
 	cleanup(&data);

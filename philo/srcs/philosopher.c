@@ -70,11 +70,11 @@ void	*philosopher_routine(void *arg)
 {
 	t_philo	*philo;
 
-	philo = (t_philo *)arg;
-	usleep(100);
-	pthread_mutex_lock(&philo->data->meal_mutex);
-	philo->last_meal_time = philo->data->start_time;
-	pthread_mutex_unlock(&philo->data->meal_mutex);
+    philo = (t_philo *)arg;
+    pthread_mutex_lock(&philo->data->start_mutex);
+    while (!philo->data->started)
+        pthread_cond_wait(&philo->data->start_cond, &philo->data->start_mutex);
+    pthread_mutex_unlock(&philo->data->start_mutex);
 	stagger_start(philo);
 	if (philo->data->num_philos == 1)
 	{

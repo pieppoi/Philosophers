@@ -56,6 +56,22 @@ int	init_other_mutexes(t_data *data)
 		cleanup_forks(data, data->num_philos);
 		return (0);
 	}
+    if (pthread_mutex_init(&data->start_mutex, NULL) != 0)
+    {
+        pthread_mutex_destroy(&data->meal_mutex);
+        pthread_mutex_destroy(&data->print_mutex);
+        cleanup_forks(data, data->num_philos);
+        return (0);
+    }
+    if (pthread_cond_init(&data->start_cond, NULL) != 0)
+    {
+        pthread_mutex_destroy(&data->start_mutex);
+        pthread_mutex_destroy(&data->meal_mutex);
+        pthread_mutex_destroy(&data->print_mutex);
+        cleanup_forks(data, data->num_philos);
+        return (0);
+    }
+    data->started = 0;
 	return (1);
 }
 
