@@ -6,7 +6,7 @@
 /*   By: mkazuhik <mkazuhik@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 04:36:32 by mkazuhik          #+#    #+#             */
-/*   Updated: 2025/10/01 05:25:22 by mkazuhik         ###   ########.fr       */
+/*   Updated: 2025/10/08 05:28:02 by mkazuhik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	monitor_philosophers(t_data *data)
 {
 	while (1)
 	{
-		usleep(1000);
+		usleep(5000);
 		pthread_mutex_lock(&data->meal_mutex);
 		if (!data->all_alive)
 		{
