@@ -6,7 +6,7 @@
 #    By: mkazuhik <mkazuhik@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/01 03:32:23 by mkazuhik          #+#    #+#              #
-#    Updated: 2025/10/09 00:37:17 by mkazuhik         ###   ########.fr        #
+#    Updated: 2025/10/09 02:00:09 by mkazuhik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,11 @@ SRCS = 	$(SRCDIR)/main.c \
 		$(SRCDIR)/parse_utils.c \
 		$(SRCDIR)/init.c \
 		$(SRCDIR)/philosopher.c \
+		$(SRCDIR)/stagger.c \
 		$(SRCDIR)/eat.c \
 		$(SRCDIR)/check.c \
-		$(SRCDIR)/utils.c
+		$(SRCDIR)/utils.c \
+		$(SRCDIR)/time_utils.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
