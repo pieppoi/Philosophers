@@ -62,6 +62,7 @@ void	philosopher_eat(t_philo *philo)
 	precise_usleep(philo->data->time_to_eat * 1000);
 	pthread_mutex_lock(&philo->data->meal_mutex);
 	philo->meals_eaten++;
+	philo->last_meal_time = get_time();
 	philo->state = SLEEPING;
 	pthread_mutex_unlock(&philo->data->meal_mutex);
 	release_forks(philo);
