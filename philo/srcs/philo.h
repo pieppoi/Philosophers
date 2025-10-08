@@ -6,7 +6,7 @@
 /*   By: mkazuhik <mkazuhik@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 03:31:55 by mkazuhik          #+#    #+#             */
-/*   Updated: 2025/10/01 04:49:19 by mkazuhik         ###   ########.fr       */
+/*   Updated: 2025/10/09 01:49:54 by mkazuhik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,17 @@ int		init_fork_mutexes(t_data *data);
 int		init_other_mutexes(t_data *data);
 
 // Philosopher functions
-void	*philosopher_routine(void *arg);
 void	philosopher_eat(t_philo *philo);
+void	*philosopher_routine(void *arg);
+void	stagger_start(t_philo *philo);
+void	handle_single_philosopher(t_philo *philo);
+void	philosopher_cycle(t_philo *philo);
 
 // Utility functions
 long	get_time(void);
 void	precise_usleep(long microseconds);
 void	print_status(t_philo *philo, const char *status);
+int		check_philosopher_status(t_philo *philo);
 int		check_death(t_philo *philo);
 int		check_all_fed(t_data *data);
 

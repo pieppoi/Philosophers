@@ -6,11 +6,21 @@
 /*   By: mkazuhik <mkazuhik@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 05:25:22 by mkazuhik          #+#    #+#             */
-/*   Updated: 2025/10/01 05:33:07 by mkazuhik         ###   ########.fr       */
+/*   Updated: 2025/10/09 01:37:59 by mkazuhik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	check_philosopher_status(t_philo *philo)
+{
+	int	status;
+
+	pthread_mutex_lock(&philo->data->meal_mutex);
+	status = philo->data->all_alive && !philo->data->all_fed;
+	pthread_mutex_unlock(&philo->data->meal_mutex);
+	return (status);
+}
 
 int	check_all_fed(t_data *data)
 {

@@ -2,11 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   eat.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
+/*                                                    ft +:+         +:+     */
 /*   By: mkazuhik <mkazuhik@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 04:36:32 by mkazuhik          #+#    #+#             */
-/*   Updated: 2025/10/01 05:29:46 by mkazuhik         ###   ########.fr       */
+/*   Updated: 2025/10/09 01:39:00 by mkazuhik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ static void	release_forks(t_philo *philo)
 static void	update_meal_info(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->meal_mutex);
-	philo->last_meal_time = get_time();
-	philo->meals_eaten++;
 	philo->state = EATING;
 	pthread_mutex_unlock(&philo->data->meal_mutex);
 }
@@ -57,7 +55,15 @@ void	philosopher_eat(t_philo *philo)
 	}
 	pthread_mutex_unlock(&philo->data->meal_mutex);
 	update_meal_info(philo);
+	pthread_mutex_lock(&philo->data->meal_mutex);
+	philo->last_meal_time = get_time();
+	pthread_mutex_unlock(&philo->data->meal_mutex);
 	print_status(philo, "is eating");
 	precise_usleep(philo->data->time_to_eat * 1000);
+	pthread_mutex_lock(&philo->data->meal_mutex);
+	philo->meals_eaten++;
+	philo->last_meal_time = get_time();
+	philo->state = SLEEPING;
+	pthread_mutex_unlock(&philo->data->meal_mutex);
 	release_forks(philo);
 }
